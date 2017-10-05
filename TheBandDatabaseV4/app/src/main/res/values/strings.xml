@@ -33,4 +33,20 @@
         <item>An Irish rock band from Dublin that formed in 1976.</item>
     </string-array>
 
+    <string-array name="genre">
+        <item>Rock</item>
+        <item>Rock</item>
+        <item>Pop</item>
+        <item>Rock</item>
+        <item>Electronic</item>
+        <item>New Wave/Synthpop</item>
+        <item>Rock</item>
+        <item>Punk Rock</item>
+        <item>Rock</item>
+        <item>Pop Rock</item>
+        <item>Rock</item>
+        <item>Rock.</item>
+        <item>Rock</item>
+    </string-array>
+
 </resources>

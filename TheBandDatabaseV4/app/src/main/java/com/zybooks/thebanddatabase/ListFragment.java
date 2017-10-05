@@ -47,15 +47,19 @@ public class ListFragment extends Fragment {
 
         private TextView mNameTextView;
 
+        private TextView mGenreTextView;
+
         public BandHolder(LayoutInflater inflater, ViewGroup parent) {
             super(inflater.inflate(R.layout.list_item_band, parent, false));
             itemView.setOnClickListener(this);
             mNameTextView = (TextView) itemView.findViewById(R.id.bandName);
+            mGenreTextView = (TextView) itemView.findViewById(R.id.bandGenre);
         }
 
         public void bind(Band band) {
             mBand = band;
             mNameTextView.setText(mBand.getName());
+            mGenreTextView.setText(mBand.getGenre());
         }
 
         @Override

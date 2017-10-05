@@ -23,8 +23,9 @@ public class BandDatabase {
         Resources res = context.getResources();
         String[] bands = res.getStringArray(R.array.bands);
         String[] descriptions = res.getStringArray(R.array.descriptions);
+        String[] genre = res.getStringArray(R.array.genre);
         for (int i = 0; i < bands.length; i++) {
-            mBands.add(new Band(i + 1, bands[i], descriptions[i]));
+            mBands.add(new Band(i + 1, bands[i], descriptions[i], genre[i]));
         }
     }
 

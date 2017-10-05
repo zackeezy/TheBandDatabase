@@ -14,6 +14,13 @@
         android:text="band name"/>
 
     <TextView
+        android:id="@+id/bandGenre"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/genreStyle"
+        android:text="genre"/>
+
+    <TextView
         android:id="@+id/bandDescription"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

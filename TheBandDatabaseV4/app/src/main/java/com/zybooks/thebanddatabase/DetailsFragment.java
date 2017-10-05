@@ -43,6 +43,9 @@ public class DetailsFragment extends Fragment {
         TextView nameTextView = (TextView) view.findViewById(R.id.bandName);
         nameTextView.setText(mBand.getName());
 
+        TextView genreTextView = (TextView) view.findViewById(R.id.bandGenre);
+        genreTextView.setText(mBand.getGenre());
+
         TextView descriptionTextView = (TextView) view.findViewById(R.id.bandDescription);
         descriptionTextView.setText(mBand.getDescription());
 

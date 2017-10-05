@@ -4,13 +4,15 @@ public class Band {
     private int mId;
     private String mName;
     private String mDescription;
+    private String mGenre;
 
     public Band() {}
 
-    public Band(int id, String name, String description) {
+    public Band(int id, String name, String description, String genre) {
         mId = id;
         mName = name;
         mDescription = description;
+        mGenre = genre;
     }
 
     public int getId() {
@@ -35,5 +37,13 @@ public class Band {
 
     public void setDescription(String description) {
         this.mDescription = description;
+    }
+
+    public String getGenre(){
+        return mGenre;
+    }
+
+    public void setGenre(String genre){
+        this.mGenre = genre;
     }
 }
