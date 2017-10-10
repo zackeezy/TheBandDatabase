@@ -27,4 +27,11 @@
         style="@style/bandDescription"
         android:text="description"/>
 
+    <TextView
+        android:id="@+id/bandRating"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/bandDescription"
+        android:text="rating"/>
+
 </LinearLayout>

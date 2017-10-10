@@ -5,6 +5,7 @@ public class Band {
     private String mName;
     private String mDescription;
     private String mGenre;
+    private float mRating;
 
     public Band() {}
 
@@ -13,6 +14,15 @@ public class Band {
         mName = name;
         mDescription = description;
         mGenre = genre;
+        mRating = -1;
+    }
+
+    public float getRating() {
+        return mRating;
+    }
+
+    public void setRating(float mRating) {
+        this.mRating = mRating;
     }
 
     public int getId() {

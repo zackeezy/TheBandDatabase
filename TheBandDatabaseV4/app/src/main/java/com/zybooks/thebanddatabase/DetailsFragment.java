@@ -13,6 +13,14 @@ public class DetailsFragment extends Fragment {
 
     private Band mBand;
 
+    private TextView mName;
+
+    private TextView mDescription;
+
+    private TextView mGenre;
+
+    private TextView mRating;
+
     public static DetailsFragment newInstance(int bandId) {
         DetailsFragment fragment = new DetailsFragment();
         Bundle args = new Bundle();
@@ -40,15 +48,38 @@ public class DetailsFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_details, container, false);
 
-        TextView nameTextView = (TextView) view.findViewById(R.id.bandName);
-        nameTextView.setText(mBand.getName());
+        mName = (TextView) view.findViewById(R.id.bandName);
+        mName.setText(mBand.getName());
 
-        TextView genreTextView = (TextView) view.findViewById(R.id.bandGenre);
-        genreTextView.setText(mBand.getGenre());
+        mGenre = (TextView) view.findViewById(R.id.bandGenre);
+        mGenre.setText(mBand.getGenre());
 
-        TextView descriptionTextView = (TextView) view.findViewById(R.id.bandDescription);
-        descriptionTextView.setText(mBand.getDescription());
+        mDescription = (TextView) view.findViewById(R.id.bandDescription);
+        mDescription.setText(mBand.getDescription());
+
+        mRating = (TextView) view.findViewById(R.id.bandRating);
+        if (mBand.getRating() >= 0)
+            mRating.setText("Rating: " + mBand.getRating());
+        else
+            mRating.setText("");
+
 
         return view;
+    }
+
+    public void setName(String name){
+        mName.setText(name);
+    }
+
+    public void setGenre(String genre){
+        mGenre.setText(genre);
+    }
+
+    public void setDescription(String desc){
+        mDescription.setText(desc);
+    }
+
+    public void setRating(String rating){
+        mRating.setText(rating);
     }
 }
