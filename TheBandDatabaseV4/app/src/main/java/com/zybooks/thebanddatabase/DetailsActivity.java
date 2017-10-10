@@ -4,6 +4,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
@@ -13,6 +14,8 @@ import android.widget.TextView;
 public class DetailsActivity extends AppCompatActivity implements RatingFragment.OnRatingSelectedListener {
 
     public static String EXTRA_BAND_ID = "bandId";
+
+    private int mBandId;
 
     private RatingFragment mRatingFragment;
 
@@ -32,48 +35,41 @@ public class DetailsActivity extends AppCompatActivity implements RatingFragment
         setContentView(R.layout.activity_details);
 
 
-        int bandId = getIntent().getIntExtra(EXTRA_BAND_ID, 1);
+        mBandId = getIntent().getIntExtra(EXTRA_BAND_ID, 1);
 
         FragmentManager fragmentManager = getSupportFragmentManager();
         Fragment fragment = fragmentManager.findFragmentById(R.id.details_fragment_container);
 
         if (fragment == null) {
             // Use band ID from ListFragment to instantiate DetailsFragment
-            mDetailsFragment = DetailsFragment.newInstance(bandId);
+            mDetailsFragment = DetailsFragment.newInstance(mBandId);
             fragmentManager.beginTransaction()
                     .add(R.id.details_fragment_container, mDetailsFragment)
                     .commit();
         }
         fragment = fragmentManager.findFragmentById(R.id.rating_fragment_container);
-        if (fragment == null) {
-            BandDatabase db = BandDatabase.get(this);
-            mRatingFragment = RatingFragment.newInstance(db.getBand(bandId).getRating());
+        BandDatabase db = BandDatabase.get(this);
+        if (fragment == null && db.getBand(mBandId).getRating() < 0) {
+            mRatingFragment = RatingFragment.newInstance(db.getBand(mBandId).getRating());
             fragmentManager.beginTransaction()
                     .add(R.id.rating_fragment_container, mRatingFragment)
                     .commit();
         }
 
-        mRatingFragment.getRatingBar().setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View view, MotionEvent motionEvent) {
-                RatingBar rb = (RatingBar) view;
-                onRatingSelected(rb.getRating());
-                return true;
-            }
-        });
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        setSupportActionBar(myToolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     @Override
     public void onRatingSelected(float rating) {
         BandDatabase db = BandDatabase.get(this);
-        int bandId = getIntent().getIntExtra(EXTRA_BAND_ID, 1);;
-        db.getBand(bandId).setRating(rating);
-        displayRating(bandId);
+        db.getBand(mBandId).setRating(rating);
+        displayRating(rating);
     }
 
-    private void displayRating(int bandId) {
-        BandDatabase db = BandDatabase.get(this);
+    private void displayRating(float rating) {
         TextView r = (TextView) mDetailsFragment.getView().findViewById(R.id.bandRating);
-        r.setText("Rating: " + db.getBand(bandId).getRating());
+        r.setText("Rating: " + rating);
     }
 }

@@ -3,6 +3,7 @@ package com.zybooks.thebanddatabase;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RatingBar;
@@ -31,6 +32,16 @@ public class RatingFragment extends Fragment {
 
         // TODO: stuff
         mRatingBar = view.findViewById(R.id.ratingBar);
+
+        mRatingBar.setOnTouchListener(new View.OnTouchListener(){
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                ((DetailsActivity)getActivity()).onRatingSelected(mRatingBar.getRating());
+                mRatingBar.setVisibility(View.GONE);
+                return false;
+            }
+
+        });
 
         return view;
     }
