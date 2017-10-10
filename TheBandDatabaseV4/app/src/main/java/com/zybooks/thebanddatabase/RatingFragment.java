@@ -37,7 +37,7 @@ public class RatingFragment extends Fragment {
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
                 ((DetailsActivity)getActivity()).onRatingSelected(mRatingBar.getRating());
-                mRatingBar.setVisibility(View.GONE);
+                //mRatingBar.setVisibility(View.GONE);
                 return false;
             }
 

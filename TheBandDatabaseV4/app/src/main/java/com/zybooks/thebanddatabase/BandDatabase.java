@@ -10,6 +10,7 @@ public class BandDatabase {
 
     private static BandDatabase sBandDatabase;
     private List<Band> mBands;
+    private BandDatabaseHelper mDbHelper;
 
     public static BandDatabase get(Context context) {
         if (sBandDatabase == null) {
@@ -19,17 +20,13 @@ public class BandDatabase {
     }
 
     private BandDatabase(Context context) {
-        mBands = new ArrayList<>();
-        Resources res = context.getResources();
-        String[] bands = res.getStringArray(R.array.bands);
-        String[] descriptions = res.getStringArray(R.array.descriptions);
-        String[] genre = res.getStringArray(R.array.genre);
-        for (int i = 0; i < bands.length; i++) {
-            mBands.add(new Band(i + 1, bands[i], descriptions[i], genre[i]));
-        }
+        mDbHelper = new BandDatabaseHelper(context.getApplicationContext());
     }
 
     public List<Band> getBands() {
+        if(mBands == null){
+            mBands = mDbHelper.getBands();
+        }
         return mBands;
     }
 
@@ -40,5 +37,9 @@ public class BandDatabase {
             }
         }
         return null;
+    }
+
+    public void updateRating(){
+        //TODO: implement updating the DB
     }
 }

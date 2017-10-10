@@ -49,7 +49,7 @@ public class DetailsActivity extends AppCompatActivity implements RatingFragment
         }
         fragment = fragmentManager.findFragmentById(R.id.rating_fragment_container);
         BandDatabase db = BandDatabase.get(this);
-        if (fragment == null && db.getBand(mBandId).getRating() < 0) {
+        if (fragment == null) {
             mRatingFragment = RatingFragment.newInstance(db.getBand(mBandId).getRating());
             fragmentManager.beginTransaction()
                     .add(R.id.rating_fragment_container, mRatingFragment)
@@ -65,6 +65,7 @@ public class DetailsActivity extends AppCompatActivity implements RatingFragment
     public void onRatingSelected(float rating) {
         BandDatabase db = BandDatabase.get(this);
         db.getBand(mBandId).setRating(rating);
+
         displayRating(rating);
     }
 
