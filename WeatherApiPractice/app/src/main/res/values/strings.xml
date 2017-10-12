@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Weather Api Practice</string>
+    <string name="look_up">Look Up</string>
+    <string name="zip_code_prompt">Look up weather by ZIP Code:</string>
+    <string name="city">City:</string>
+    <string name="cur_temp">Current Temperature:</string>
+    <string name="hi_temp">High Temperature:</string>
+    <string name="low_temp">Low Temperature:</string>
+</resources>
