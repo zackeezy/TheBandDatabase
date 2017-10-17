@@ -44,6 +44,9 @@ public class WeatherFetcher {
                             Weather weather = new Weather();
                             JSONObject main = response.getJSONObject("main");
                             weather.setCurrentTemp(main.getInt("temp"));
+                            weather.setCity(main.getString("city"));
+                            weather.setMaxTemp(((int) main.getDouble("temp_max")));
+                            weather.setMinTemp(((int) main.getDouble("temp_min")));
                         }
                         catch(Exception ex){
                             Log.d("temp", "Error: " + ex.toString());
