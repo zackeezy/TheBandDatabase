@@ -2,11 +2,13 @@ package edu.harding.weatherapipractice;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -54,12 +56,16 @@ public class MainActivity extends AppCompatActivity {
         fetcher.getWeather(zip, new WeatherFetcher.onWeatherReceivedListener() {
             @Override
             public void onWeatherReceived(Weather weather) {
-                mCurrentTemp.setText("F " + weather.getCurrentTemp());
+                mCurrentTemp.setText(String.format(getResources().getString(R.string.temp_formating), weather.getCurrentTemp()));
+                mLowTemp.setText(String.format(getResources().getString(R.string.temp_formating), weather.getMinTemp()));
+                mHighTemp.setText(String.format(getResources().getString(R.string.temp_formating), weather.getMaxTemp()));
+                mCity.setText(" " + weather.getCity());
             }
 
             @Override
             public void onErrorResponse(VolleyError error) {
-                mCurrentTemp.setText(error.toString());
+                Log.e("WeatherApp","Error: response failed.");
+                Toast.makeText(MainActivity.this, R.string.failed, Toast.LENGTH_LONG);
             }
         });
     }
